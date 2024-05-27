@@ -28,7 +28,9 @@ output_files = []
 for i in range(len(training_paths)):
     if '.jpg' in training_paths[i]:
         img = image_parse(beginning + training_paths[i])
-        clahe = cv2.createCLAHE(clipLimit = 80, tileGridSize = (10, 10))
-        clahe_img = clahe.apply(img)
-        im2 = sobel(clahe_img)
-        output_files.append(im2)
+        clahe = cv2.createCLAHE(clipLimit = 95, tileGridSize = (10, 10))
+        clahe_img = clahe.apply(img) + 40
+        im_sobel = sobel(clahe_img)
+        output_files.append(im_sobel)
+        
+display_image(output_files[4])
